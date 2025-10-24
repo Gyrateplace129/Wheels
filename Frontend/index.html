@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wheels - Demo</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="app-header">
+<h1 class="logo">Wheels</h1>
+<nav id="nav-auth">
+<button id="btn-login" class="btn small">Iniciar sesión</button>
+<button id="btn-register" class="btn small outline">Registro</button>
+</nav>
+</header>
+
+
+<main id="app" class="container">
+<section id="auth-view" class="card hidden"></section>
+
+
+<section id="main-view" class="hidden">
+<div class="grid">
+<aside class="sidebar">
+<button id="btn-create-travel" class="btn">Crear viaje</button>
+<button id="btn-profile" class="btn outline">Perfil</button>
+<button id="btn-logout" class="btn danger hidden">Cerrar sesión</button>
+</aside>
+
+
+<section class="content">
+<div id="search-filters" class="card">
+<h3>Busqueda de viajes</h3>
+<div class="form-row">
+<input id="filter-start" placeholder="Punto de inicio" />
+<input id="filter-end" placeholder="Punto de destino" />
+<input id="filter-seats" type="number" min="1" placeholder="Cupos min" />
+<button id="btn-search" class="btn">Buscar viajes</button>
+</div>
+</div>
+
+
+<div id="travel-list" class="card">
+<h3>Lista de viajes encontrados</h3>
+<div id="travels" class="list"></div>
+</div>
+</section>
+</div>
+</section>
+
+
+<div id="modals"></div>
+</main>
+
+
+<footer class="footer">
+<small>Wheels • Demo frontend</small>
+</footer>
+
+
+<script src="app.js" type="module"></script>
+</body>
+</html>
