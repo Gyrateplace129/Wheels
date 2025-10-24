@@ -2,7 +2,7 @@
 // Place in Wheels/frontend/app.js
 // NOTE: API_BASE default points to localhost:5000. If backend is served same origin, change to '/api'.
 
-const API_BASE = window.__API_BASE__ || 'http://localhost:5000/api';
+const API_BASE = window.__API_BASE__ || 'https://wheels-9og0.onrender.com';
 
 //
 // Helpers
