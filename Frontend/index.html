@@ -1,64 +1,73 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Wheels - Demo</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wheels — Compartir viaje</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header class="app-header">
-<h1 class="logo">Wheels</h1>
-<nav id="nav-auth">
-<button id="btn-login" class="btn small">Iniciar sesión</button>
-<button id="btn-register" class="btn small outline">Registro</button>
-</nav>
-</header>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1>Wheels</h1>
+        <small class="tagline">Comparte rutas. Comparte historias.</small>
+      </div>
 
+      <nav class="nav" id="nav-auth">
+        <span id="welcome" class="hidden">Hola, <strong id="user-name"></strong></span>
+        <button id="btn-login" class="btn ghost">Iniciar sesión</button>
+        <button id="btn-register" class="btn primary-outline">Registro</button>
+        <button id="btn-logout" class="btn danger hidden">Cerrar sesión</button>
+      </nav>
+    </div>
+  </header>
 
-<main id="app" class="container">
-<section id="auth-view" class="card hidden"></section>
+  <main class="container main-content">
+    <!-- AUTH VIEW -->
+    <section id="auth-area" class="card auth-card hidden">
+      <!-- Rendered by JS -->
+    </section>
 
+    <!-- APP VIEW -->
+    <section id="app-area" class="hidden">
+      <div class="grid">
+        <aside class="sidebar card">
+          <button id="btn-create-travel" class="btn block">Crear viaje</button>
+          <button id="btn-profile" class="btn outline block">Perfil</button>
+          <hr />
+          <div class="small muted">Filtros rápidos</div>
+          <input id="filter-start" placeholder="Punto inicio" class="input" />
+          <input id="filter-end" placeholder="Punto destino" class="input" />
+          <div class="row">
+            <input id="filter-seats" type="number" min="1" placeholder="Cupos ≥" class="input" />
+            <button id="btn-search" class="btn">Buscar</button>
+          </div>
+        </aside>
 
-<section id="main-view" class="hidden">
-<div class="grid">
-<aside class="sidebar">
-<button id="btn-create-travel" class="btn">Crear viaje</button>
-<button id="btn-profile" class="btn outline">Perfil</button>
-<button id="btn-logout" class="btn danger hidden">Cerrar sesión</button>
-</aside>
+        <section class="content">
+          <div class="card">
+            <div class="row between">
+              <h2 class="h3">Viajes disponibles</h2>
+              <div id="loader-top" class="loader hidden"></div>
+            </div>
+            <div id="travels-list" class="list"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
 
+  <footer class="footer">
+    <div class="container">
+      <small>Wheels • Demo • Hecho con ❤️</small>
+    </div>
+  </footer>
 
-<section class="content">
-<div id="search-filters" class="card">
-<h3>Busqueda de viajes</h3>
-<div class="form-row">
-<input id="filter-start" placeholder="Punto de inicio" />
-<input id="filter-end" placeholder="Punto de destino" />
-<input id="filter-seats" type="number" min="1" placeholder="Cupos min" />
-<button id="btn-search" class="btn">Buscar viajes</button>
-</div>
-</div>
+  <!-- Modals and Toasts -->
+  <div id="modals-root"></div>
+  <div id="toasts" aria-live="polite"></div>
 
-
-<div id="travel-list" class="card">
-<h3>Lista de viajes encontrados</h3>
-<div id="travels" class="list"></div>
-</div>
-</section>
-</div>
-</section>
-
-
-<div id="modals"></div>
-</main>
-
-
-<footer class="footer">
-<small>Wheels • Demo frontend</small>
-</footer>
-
-
-<script src="app.js" type="module"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

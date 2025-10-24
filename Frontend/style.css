@@ -1,32 +1,95 @@
 :root{
---bg:#f5f7fb; --card:#ffffff; --primary:#2563eb; --muted:#6b7280; --danger:#dc2626; --success:#16a34a;
+  --bg:#f6f9ff;
+  --card:#ffffff;
+  --primary:#2463f0;
+  --muted:#6b7280;
+  --danger:#db2b39;
+  --success:#16a34a;
+  --glass: rgba(255,255,255,0.75);
+  --radius:12px;
+  --shadow: 0 8px 24px rgba(16,24,40,0.06);
+  --accent: #eef6ff;
+  --max-width:1100px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
+
+/* Reset */
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter, Roboto, Arial, sans-serif;background:var(--bg);color:#111}
-.container{max-width:1100px;margin:24px auto;padding:12px}
-.app-header{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;background:transparent}
-.logo{margin:0;font-weight:700}
-.grid{display:grid;grid-template-columns:260px 1fr;gap:16px}
-.card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 20px rgba(11,15,30,0.04)}
-.sidebar{display:flex;flex-direction:column;gap:8px}
-.content{min-height:60vh}
-.list{display:flex;flex-direction:column;gap:10px}
-.travel-card{border:1px solid #e6e9ef;padding:12px;border-radius:8px;display:flex;justify-content:space-between;align-items:center}
-.travel-meta{display:flex;flex-direction:column;gap:4px}
-.badge{padding:6px 8px;border-radius:8px;font-size:13px}
-.badge.info{background:#eef2ff;color:var(--primary)}
-.badge.full{background:#fff1f2;color:var(--danger)}
-.btn{background:var(--primary);color:white;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
-.btn:hover{opacity:0.95}
-.btn.small{padding:6px 8px;font-size:14px}
-.btn.outline{background:transparent;color:var(--primary);border:1px solid var(--primary)}
-.btn.danger{background:var(--danger)}
+html,body{margin:0;height:100%;background:linear-gradient(180deg,var(--bg),#f0f4ff);color:#0b1220}
+.container{max-width:var(--max-width);margin:20px auto;padding:0 16px}
+
+/* Header */
+.header{backdrop-filter: blur(6px);background:transparent;padding:18px 0}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.brand h1{margin:0;font-size:20px;color:var(--primary)}
+.brand .tagline{display:block;font-size:12px;color:var(--muted)}
+
+.nav{display:flex;gap:8px;align-items:center}
+.btn{border:0;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:600}
+.btn.ghost{background:transparent;color:var(--primary);border:1px solid transparent}
+.btn.primary-outline{background:transparent;color:var(--primary);border:1px solid rgba(36,99,240,0.12)}
+.btn.outline{background:transparent;color:#0b1220;border:1px solid rgba(11,18,32,0.06)}
+.btn.primary{background:var(--primary);color:white}
+.btn.danger{background:var(--danger);color:white}
+.btn.block{width:100%;display:inline-block}
 .hidden{display:none}
-.form-row{display:flex;gap:8px;align-items:center}
-.input, input, select, textarea{padding:8px;border-radius:8px;border:1px solid #e6e6e6}
-.footer{max-width:1100px;margin:12px auto;text-align:center;color:var(--muted)}
-.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.45)}
-.modal .modal-card{width:100%;max-width:720px}
-@media (max-width:900px){.grid{grid-template-columns:1fr}.sidebar{flex-direction:row;gap:6px}}
-.text-muted{color:var(--muted)}
-.align-right{text-align:right}
+
+/* Layout */
+.main-content{padding-top:6px}
+.grid{display:grid;grid-template-columns:280px 1fr;gap:18px;align-items:start}
+.sidebar .input{width:100%;margin-top:8px}
+.content .card{padding:18px}
+
+/* Cards/list */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+.list{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+
+/* Travel card */
+.travel{
+  display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:10px;border:1px solid #eef2ff;
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.travel:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(36,99,240,0.06)}
+.travel-left{display:flex;gap:12px;align-items:center}
+.avatar{
+  width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,#e9f0ff,#fff);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--primary)
+}
+.travel-meta{display:flex;flex-direction:column}
+.travel-meta small{color:var(--muted)}
+.travel-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.badge{padding:6px 8px;border-radius:999px;font-weight:700;font-size:13px}
+.badge.available{background:#eef6ff;color:var(--primary)}
+.badge.full{background:#fff2f2;color:var(--danger)}
+
+/* Form styles */
+.input, input, select, textarea{width:100%;padding:9px;border-radius:10px;border:1px solid #e6eefc;background:transparent;outline:none}
+.input:focus, input:focus{box-shadow:0 0 0 4px rgba(36,99,240,0.06);border-color:rgba(36,99,240,0.24)}
+
+/* small utils */
+.row{display:flex;gap:8px;align-items:center}
+.between{display:flex;align-items:center;justify-content:space-between}
+.h3{margin:0;font-size:18px}
+
+/* Loader */
+.loader{width:20px;height:20px;border-radius:50%;border:3px solid rgba(0,0,0,0.08);border-top-color:var(--primary);animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:flex;align-items:center;justify-content:center;z-index:60}
+.modal-card{width:100%;max-width:720px;background:var(--card);padding:18px;border-radius:14px;box-shadow:var(--shadow)}
+.modal-card h3{margin:0 0 12px 0}
+
+/* Toasts */
+#toasts{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:80}
+.toast{background:#0b1220;color:white;padding:10px 14px;border-radius:10px;box-shadow:0 8px 22px rgba(11,18,32,0.12);opacity:0;transform:translateY(12px);animation:toast-in .32s forwards}
+.toast.success{background:linear-gradient(90deg,#1dbf73,#16a34a)}
+.toast.error{background:linear-gradient(90deg,#ff416c,#ff4b2b)}
+@keyframes toast-in{to{opacity:1;transform:none}}
+
+/* Responsive */
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr;padding-bottom:20px}
+  .sidebar{display:flex;flex-direction:row;gap:8px;align-items:center}
+  .sidebar .card{flex:1}
+  .brand h1{font-size:18px}
+}
