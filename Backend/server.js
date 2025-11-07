@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://wheels-frontend.vercel.app" // <-- Se actualizará cuando deployes
+    "https://wheels-indol.vercel.app" // <-- Se actualizará 
   ],
   credentials: true,
 }));
