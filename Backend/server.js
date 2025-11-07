@@ -1,18 +1,41 @@
 import express from "express";
-import dotenv from "dotenv";
 import cors from "cors";
+import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-import authRoutes from "./routes/auth.js";
 
+import authRoutes from "./routes/auth.routes.js";
+import userRoutes from "./routes/user.routes.js";
+import travelRoutes from "./routes/travel.routes.js";
 
 dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+
+// Middleware
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
+// 🔥 IMPORTANTE → Permitir FRONTEND en Vercel
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://wheels-frontend.vercel.app" // <-- Se actualizará cuando deployes
+  ],
+  credentials: true,
+}));
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
+// Prefijo de API
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/travel", travelRoutes);
+
+app.get("/", (req, res) => res.send("✅ API funcionando correctamente"));
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log("🚀 Servidor listo en puerto", PORT));
+
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/travel", travelRoutes);
+
+

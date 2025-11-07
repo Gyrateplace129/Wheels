@@ -41,3 +41,23 @@ Thumbs.db
 # =====================================
 backend/uploads/
 backend/temp/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment Variables
+.env
+
+# Build output
+dist/
+build/
+
+# Vercel / Render cache
+.vercel/
+.render/
+
+# OS
+.DS_Store
+Thumbs.db
