@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 // ✅ OJO: ruta correcta hacia controllers (+ extensión .js y mayúsculas exactas)
-import { register, login, me } from "../controllers/auth.controller.js";
+import { register, login, me } from "../controllers/auth.controllers.js";
 
 const router = Router();
 
