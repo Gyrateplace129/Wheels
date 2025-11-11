@@ -12,30 +12,24 @@ connectDB();
 
 const app = express();
 
-// Middleware
 app.use(express.json());
 
-// 🔥 IMPORTANTE → Permitir FRONTEND en Vercel
+// ✅ CORS CONFIG
 app.use(cors({
   origin: [
-    "http://localhost:5173",
-    "https://wheels-indol.vercel.app" // <-- Se actualizará 
+    "http://localhost:5173",              // Desarrollo
+    "https://wheels-kappa.vercel.app",    // Tu frontend en producción
   ],
   credentials: true,
 }));
 
-// Prefijo de API
+// ✅ Rutas API
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/travel", travelRoutes);
 
-app.get("/", (req, res) => res.send("✅ API funcionando correctamente"));
+// ✅ Ruta test
+app.get("/", (req, res) => res.json({ message: "API funcionando correctamente ✅" }));
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log("🚀 Servidor listo en puerto", PORT));
-
-app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
-app.use("/api/travel", travelRoutes);
-
-
+app.listen(PORT, () => console.log(`🚀 Servidor listo en puerto ${PORT}`));
