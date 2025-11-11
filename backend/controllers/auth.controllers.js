@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "sebastian quintero venegas/Desarrollo Web/Wheels/backend/models/user.js";
-import Vehicle from "sebastian quintero venegas/Desarrollo Web/Wheels/models/vehicles.js";
+import User from ". ./models/user.js";
+import Vehicle from ". ./models/vehicles.js";
 
 export const registerUser = async (req, res) => {
   try {
