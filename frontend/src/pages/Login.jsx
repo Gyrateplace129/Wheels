@@ -1,89 +1,68 @@
-import { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import api from "../api/axios";
-import { AuthContext } from "../context/AuthProvider";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../api/axios";
 
 export default function Login() {
-  const { setToken, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
-      const res = await api.post("/auth/login", { email, password });
-
-      if (!res.data.success) {
-        alert(res.data.message || "Credenciales incorrectas");
-        return;
-      }
-
-      // Guardar sesión
-      setToken(res.data.token, res.data.user);
-      setUser(res.data.user);
-
-      navigate("/");
+      const res = await axios.post("/auth/login", { email, password });
+      localStorage.setItem("token", res.data.token);
+      navigate("/travels");
     } catch (err) {
-      alert(err.response?.data?.message || "Error en el servidor.");
-    } finally {
-      setLoading(false);
+      alert("Credenciales incorrectas");
     }
-  }
+  };
 
   return (
-    <div className="min-h-[80vh] flex justify-center items-center px-4">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md bg-white shadow-lg rounded-xl p-6 space-y-5 border border-slate-200"
-      >
-        <h1 className="text-3xl font-bold text-center text-indigo-600 select-none">
-          Wheels
-        </h1>
-        <p className="text-center text-slate-500 text-sm -mt-3">Compartir viajes universitarios</p>
+    <div className="min-h-screen flex items-center justify-center bg-[#0d0d12] text-white">
+      <div className="w-full max-w-md p-8 rounded-2xl shadow-2xl bg-[#151520] border border-[#3b3b5a]/30">
+        <h2 className="text-3xl font-bold text-center mb-6 text-violet-400">
+          Wheels 🚗✨
+        </h2>
 
-        <div className="space-y-1">
-          <label className="text-sm text-slate-600">Correo institucional</label>
-          <input
-            type="email"
-            className="w-full border border-slate-300 px-3 py-2 rounded-md focus:outline-indigo-600"
-            placeholder="tu.correo@university.edu"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-sm mb-2 text-gray-300">Correo</label>
+            <input
+              type="email"
+              className="w-full px-4 py-3 bg-[#1e1e2a] border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="correo@universidad.com"
+            />
+          </div>
 
-        <div className="space-y-1">
-          <label className="text-sm text-slate-600">Contraseña</label>
-          <input
-            type="password"
-            className="w-full border border-slate-300 px-3 py-2 rounded-md focus:outline-indigo-600"
-            placeholder="********"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
+          <div>
+            <label className="block text-sm mb-2 text-gray-300">Contraseña</label>
+            <input
+              type="password"
+              className="w-full px-4 py-3 bg-[#1e1e2a] border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="********"
+            />
+          </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-md transition-all disabled:opacity-50"
-        >
-          {loading ? "Ingresando..." : "Iniciar sesión"}
-        </button>
+          <button
+            type="submit"
+            className="w-full py-3 mt-4 bg-violet-600 hover:bg-violet-700 transition-all rounded-lg text-lg font-bold shadow-[0_0_12px_#6d28d9]"
+          >
+            Iniciar sesión
+          </button>
+        </form>
 
-        <p className="text-center text-sm text-slate-500">
-          ¿No tienes una cuenta?{" "}
-          <Link to="/register" className="text-indigo-600 hover:underline">
-            Crear cuenta
+        <p className="text-center mt-6 text-gray-400">
+          ¿No tienes cuenta?{" "}
+          <Link to="/register" className="text-violet-400 hover:text-violet-300">
+            Regístrate
           </Link>
         </p>
-      </form>
+      </div>
     </div>
   );
 }
