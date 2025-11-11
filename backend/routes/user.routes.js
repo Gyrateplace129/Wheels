@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getProfile, updateProfile } from "../controllers/user.controllers.js";
-import verifyToken from "../middlewares/auth.middleware.js";
+import verifyToken from "../middlewares/auth.middlewares.js";
 
 const router = Router();
 
