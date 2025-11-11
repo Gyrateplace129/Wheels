@@ -1,9 +1,11 @@
 import { Routes, Route } from "react-router-dom";
+
+// Pages
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Travel from "./pages/Travel";
-import Reserve from "./pages/Reserve";
 import Profile from "./pages/Profile";
+import Reserve from "./pages/Reserve";
+import Travel from "./pages/Travel";
 import CreateTravel from "./pages/CreateTravel";
 
 function App() {
@@ -11,10 +13,13 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/travel" element={<Travel />} />
-      <Route path="/reserve/:id" element={<Reserve />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/create-travel" element={<CreateTravel />} />
+      <Route path="/reserve" element={<Reserve />} />
+      <Route path="/travel" element={<Travel />} />
+      <Route path="/travel/create" element={<CreateTravel />} />
+
+      {/* Ruta catch-all (si algo no existe → volver al login) */}
+      <Route path="*" element={<Login />} />
     </Routes>
   );
 }
