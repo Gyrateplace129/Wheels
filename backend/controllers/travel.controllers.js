@@ -1,4 +1,4 @@
-import Travel from "../models/travel.js";
+import Travel from "../models/travels.js";
 import User from "../models/user.js";
 
 // Crear un viaje nuevo (solo conductores)
