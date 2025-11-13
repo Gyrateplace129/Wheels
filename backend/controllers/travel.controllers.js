@@ -1,4 +1,4 @@
-import Travel from "../models/travel.js";
+import Travel from "../models/travels.js";
 
 export const createTravel = async (req, res) => {
   try {
